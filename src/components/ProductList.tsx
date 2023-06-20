@@ -1,49 +1,27 @@
-import React, { useState, useEffect, use } from "react";
-import { fetchProducts, Product } from "@/data/products";
-
-interface CartItem extends Product {
-  quantity: number;
-}
+import React, { useState, useEffect, useContext } from "react";
+import { fetchProducts } from "@/data/products";
+import { Product } from "@/types/types";
+import { CartContext } from "@/context/CartContext";
 
 const ProductList: React.FC = () => {
-  const [cart, setCart] = useState<CartItem[]>([]);
+  // Remove this line as we don't need local state anymore
+  // const [cart, setCart] = useState<CartItem[]>([]);
+
+  const { addToCart } = useContext(CartContext);
 
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setLoading(true),
-      fetchProducts()
-        .then((data) => setProducts(data))
-        .catch((err) => setError(err))
-        .finally(() => setLoading(false));
+    setLoading(true);
+    fetchProducts()
+      .then((data) => setProducts(data))
+      .catch((err) => setError(err))
+      .finally(() => setLoading(false));
   }, []);
 
-  // Define a function to handle adding products to the cart
-  const addToCart = (product: Product) => {
-    setCart((currentCart) => {
-      const existingProduct = currentCart.find((item) => item.id === product.id);
-
-      console.log("Current Cart before update: ", currentCart);
-
-      if (existingProduct) {
-        console.log("Product already exists in the cart", existingProduct);
-
-        const updatedCart = currentCart.map((item) => (item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item));
-
-        console.log("Updated Cart: ", updatedCart);
-        return updatedCart;
-      } else {
-        console.log("Product does not exist in the cart, adding new product", product);
-
-        const updatedCart = [...currentCart, { ...product, quantity: 1 }];
-
-        console.log("Updated Cart: ", updatedCart);
-        return updatedCart;
-      }
-    });
-  };
+  // Remove the addToCart function, as we're now getting it from our context
 
   if (loading) {
     return <p>Loading products...</p>;
