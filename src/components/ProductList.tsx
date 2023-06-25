@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { fetchProducts } from "@/data/products";
 import { Product } from "@/types/types";
+import "../styles/product_list.css";
+
 import { CartContext } from "@/context/CartContext";
 
 const ProductList: React.FC = () => {
@@ -32,7 +34,7 @@ const ProductList: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="product_list">
       {products.map((product) => (
         <div key={product.id}>
           <img src={product.image} alt={product.name} />

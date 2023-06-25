@@ -15,6 +15,8 @@ export interface CartContextProps {
   addToCart: (product: CartItem) => void;
   removeFromCart: (product: CartItem) => void;
   updateCart: (product: CartItem) => void;
+  openCart: () => void;
+  isCartOpen: boolean;
 }
 
 export type Action =
