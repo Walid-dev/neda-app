@@ -65,6 +65,7 @@ function cartReducer(state: CartItem[], action: Action) {
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Use the reducer to manage the cart state
   const [cart, dispatch] = useReducer(cartReducer, []);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   // Actions wrapped in useCallback for memoization
   const addToCart = useCallback((product: CartItem) => {
@@ -79,6 +80,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     dispatch({ type: "UPDATE_ITEM", product });
   }, []);
 
+  const openCart = useCallback(() => {
+    setIsCartOpen(!isCartOpen);
+  }, [isCartOpen]);
+
   // The CartContext.Provider makes the cart state and actions available to all child components
-  return <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateCart }}>{children}</CartContext.Provider>;
+  return (
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateCart, openCart, isCartOpen }}>
+      {children}
+    </CartContext.Provider>
+  );
 };

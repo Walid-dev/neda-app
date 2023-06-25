@@ -9,7 +9,7 @@ const ProductList: React.FC = () => {
   // Remove this line as we don't need local state anymore
   // const [cart, setCart] = useState<CartItem[]>([]);
 
-  const { addToCart } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext)!;
 
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
