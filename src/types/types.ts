@@ -16,6 +16,7 @@ export interface CartContextProps {
   removeFromCart: (product: CartItem) => void;
   updateCart: (product: CartItem) => void;
   openCart: () => void;
+  closeCart: () => void;
   isCartOpen: boolean;
 }
 

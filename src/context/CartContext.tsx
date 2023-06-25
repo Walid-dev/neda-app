@@ -81,12 +81,18 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const openCart = useCallback(() => {
-    setIsCartOpen(!isCartOpen);
+    setIsCartOpen(true);
+    console.log("Open Cart");
+  }, [isCartOpen]);
+
+  const closeCart = useCallback(() => {
+    setIsCartOpen(false);
+    console.log("Close Cart");
   }, [isCartOpen]);
 
   // The CartContext.Provider makes the cart state and actions available to all child components
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateCart, openCart, isCartOpen }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateCart, openCart, closeCart, isCartOpen }}>
       {children}
     </CartContext.Provider>
   );
