@@ -1,5 +1,5 @@
 import React from "react";
-import CartIcon from "../components/CartIcon"; // Make sure the path is correct
+import CartIcon from "./CartIcon"; // Make sure the path is correct
 
 const Header: React.FC = () => {
   return (
