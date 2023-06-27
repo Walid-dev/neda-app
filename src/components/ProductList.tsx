@@ -4,6 +4,7 @@ import { Product } from "@/types/types";
 import "../styles/product_list.css";
 
 import { CartContext } from "@/context/CartContext";
+import Link from "next/link";
 
 const ProductList: React.FC = () => {
   // Remove this line as we don't need local state anymore
@@ -37,7 +38,9 @@ const ProductList: React.FC = () => {
     <div className="product_list">
       {products.map((product) => (
         <div key={product.id}>
-          <img src={product.image} alt={product.name} />
+          <Link href={`/products/${product.id}`}>
+            <img src={product.image} alt={product.name} />
+          </Link>
           <h2>{product.name}</h2>
           <p>{product.description}</p>
           <p>${product.price.toFixed(2)}</p>

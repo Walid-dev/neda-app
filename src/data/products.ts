@@ -36,8 +36,20 @@ const products: Product[] = [
 export async function fetchProducts(): Promise<Product[]> {
   // Simulating network latency
   return new Promise((resolve) => {
-    setTimeout(() => resolve(products), 1000);
+    setTimeout(() => resolve(products), 300);
   });
 }
+
+export function fetchProductById(id: number): Promise<Product> {
+  return new Promise((resolve, reject) => {
+    const product = products.find((product) => product.id === id);
+    if (product) {
+      resolve(product);
+    } else {
+      reject(new Error("No product with the given id exists."));
+    }
+  });
+}
+
 
 export default products;
