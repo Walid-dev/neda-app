@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "@/context/CartContext";
+import products from "@/data/products";
 
 const CartModal: React.FC = () => {
   const { cart, isCartOpen, updateCart, removeFromCart, closeCart } = useContext(CartContext)!;
@@ -12,18 +13,18 @@ const CartModal: React.FC = () => {
     <div
       className="cart-modal"
       style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
+        position: "absolute",
+        top: "0",
+        left: "0",
         width: "100%",
-        height: "100%",
-        backgroundColor: "rgba(0,0,0,0.5)",
+        backgroundColor: "rgba(0,0,0,0.8)",
         zIndex: 1000,
       }}>
       <button onClick={closeCart}>Close</button>
       {cart.map((item) => (
         <div key={item.id}>
           <h2>{item.name}</h2>
+          <img src={item.image} alt={item.name} />
           <p>{item.description}</p>
           <p>${item.price.toFixed(2)}</p>
           <input
