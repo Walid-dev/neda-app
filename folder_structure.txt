@@ -1,0 +1,46 @@
+.
+├── README.md
+├── db.json
+├── folder_structure.txt
+├── next-env.d.ts
+├── next.config.js
+├-- node...
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── src
+│   ├── app
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   └── layout.tsx
+│   ├── components
+│   │   ├── CartIcon.tsx
+│   │   ├── CartModal.tsx
+│   │   ├── Header.tsx
+│   │   └── ProductList.tsx
+│   ├── context
+│   │   └── CartContext.tsx
+│   ├── data
+│   │   └── products.ts
+│   ├── pages
+│   │   ├── HomePage.test.tsx
+│   │   ├── _app.tsx
+│   │   ├── example.tsx
+│   │   ├── index.tsx
+│   │   ├── pages.tsx
+│   │   └── products
+│   ├── public
+│   │   ├── next.svg
+│   │   └── vercel.svg
+│   ├── styles
+│   │   ├── cart_icon.css
+│   │   ├── cart_modal.css
+│   │   ├── globals.css
+│   │   ├── header.css
+│   │   └── product_list.css
+│   └── types
+│       └── types.ts
+├── tailwind.config.js
+└── tsconfig.json
+
+1336 directories, 3748 files

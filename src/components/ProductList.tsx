@@ -7,9 +7,6 @@ import { CartContext } from "@/context/CartContext";
 import Link from "next/link";
 
 const ProductList: React.FC = () => {
-  // Remove this line as we don't need local state anymore
-  // const [cart, setCart] = useState<CartItem[]>([]);
-
   const { addToCart } = useContext(CartContext)!;
 
   const [products, setProducts] = useState<Product[]>([]);

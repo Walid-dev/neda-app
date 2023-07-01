@@ -50,7 +50,6 @@ function cartReducer(state: CartItem[], action: Action) {
       // Update the specific product in the cart
       const updatedState = state.map((item) => (item.id === action.product.id ? { ...item, ...action.product } : item));
       console.log("Updated cart: ", updatedState);
-
       return updatedState;
     }
     // If the action type is not recognized
