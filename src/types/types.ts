@@ -20,6 +20,10 @@ export interface CartContextProps {
   isCartOpen: boolean;
 }
 
+export interface UserContextProps {
+  user: User | null;
+}
+
 export type Action =
   | { type: "ADD_ITEM"; product: CartItem }
   | { type: "REMOVE_ITEM"; product: CartItem }
