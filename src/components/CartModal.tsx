@@ -6,8 +6,6 @@ import "../styles/cart_modal.css";
 const CartModal: React.FC = () => {
   const { cart, isCartOpen, updateCart, removeFromCart, closeCart } = useContext(CartContext)!;
 
-  console.log("isCartOpen:", isCartOpen);
-
   if (!isCartOpen) {
     return null;
   }

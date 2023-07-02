@@ -30,3 +30,14 @@ export enum CartActionType {
   REMOVE_ITEM = "REMOVE_ITEM",
   UPDATE_ITEM = "UPDATE_ITEM",
 }
+
+export type User = {
+  id: number;
+  email: string;
+  name: string;
+  phone: string;
+  country: string;
+  age: number;
+  status: string;
+  creation_date: string;
+};

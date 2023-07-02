@@ -5,8 +5,10 @@ const Header: React.FC = () => {
   return (
     <header>
       <h1>My E-commerce Site</h1>
-      <nav>{/* Your navigation items */}</nav>
-      <CartIcon />
+      <nav>
+        {/* Your navigation items */}
+        <CartIcon />
+      </nav>
     </header>
   );
 };
