@@ -21,7 +21,7 @@ const CartModal: React.FC = () => {
             <h2>{item.name}</h2>
             <img src={item.image} alt={item.name} />
             <p>{item.description}</p>
-            <p>${item.price.toFixed(2)}</p>
+            <p>${(item.price * item.quantity).toFixed(2)}</p>
             <input
               type="number"
               value={item.quantity}

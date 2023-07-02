@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useEffect, useState } from "react";
 import { User, UserContextProps } from "@/types/types";
 import { fetchUserById } from "@/data/users";
 
@@ -7,16 +7,24 @@ export const UserContext = createContext<UserContextProps | null>({ user: null }
 
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [isUserSectionOpen, setIsUserSectionOpen] = useState(false);
 
   useEffect(() => {
-    // Replace 1 with your default user id
     fetchUserById(77)
       .then((defaultUser) => setUser(defaultUser))
       .catch((err) => console.error(err));
   }, []);
 
-  console.log(user);
+  const openUserSection = useCallback(() => {
+    setIsUserSectionOpen(true);
+  }, [isUserSectionOpen]);
+
+  const closeUserSection = useCallback(() => {
+    setIsUserSectionOpen(false);
+  }, [isUserSectionOpen]);
 
   // Provide the user state as a part of the context value
-  return <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ user, openUserSection, closeUserSection, isUserSectionOpen }}>{children}</UserContext.Provider>
+  );
 };

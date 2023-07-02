@@ -22,6 +22,9 @@ export interface CartContextProps {
 
 export interface UserContextProps {
   user: User | null;
+  openUserSection: () => void;
+  closeUserSection: () => void;
+  isUserSectionOpen: boolean;
 }
 
 export type Action =

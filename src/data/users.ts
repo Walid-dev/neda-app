@@ -50,7 +50,7 @@ export function fetchUserById(id: number): Promise<User> {
     if (user) {
       resolve(user);
     } else {
-      reject(new Error("No product with the given id exists."));
+      reject(new Error("No User with the given id exists."));
     }
   });
 }

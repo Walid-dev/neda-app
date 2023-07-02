@@ -5,6 +5,7 @@ import { CartProvider } from "@/context/CartContext";
 import Header from "@/components/Header";
 import CartModal from "@/components/CartModal";
 import { UserProvider } from "@/context/UserContext";
+import UserModal from "@/components/UserModal";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
@@ -13,6 +14,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <Header />
         <Component {...pageProps} />
         <CartModal />
+        <UserModal />
       </UserProvider>
     </CartProvider>
   );
