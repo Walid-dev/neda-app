@@ -1,3 +1,13 @@
+import { FirebaseApp } from "firebase/app";
+import { Analytics } from "firebase/analytics";
+
+export interface RegistrationFormProps {
+  firebase: {
+    app: FirebaseApp;
+    analytics?: Analytics;
+  };
+}
+
 export interface Product {
   id: number;
   name: string;
