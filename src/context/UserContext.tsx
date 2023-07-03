@@ -7,7 +7,7 @@ export const UserContext = createContext<UserContextProps | null>({ user: null }
 
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [isUserSectionOpen, setIsUserSectionOpen] = useState(false);
+  const [isUserModalOpen, setisUserModalOpen] = useState(false);
 
   useEffect(() => {
     fetchUserById(77)
@@ -15,16 +15,14 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       .catch((err) => console.error(err));
   }, []);
 
-  const openUserSection = useCallback(() => {
-    setIsUserSectionOpen(true);
-  }, [isUserSectionOpen]);
+  const openUserModal = useCallback(() => {
+    setisUserModalOpen(true);
+  }, [isUserModalOpen]);
 
-  const closeUserSection = useCallback(() => {
-    setIsUserSectionOpen(false);
-  }, [isUserSectionOpen]);
+  const closeUserModal = useCallback(() => {
+    setisUserModalOpen(false);
+  }, [isUserModalOpen]);
 
   // Provide the user state as a part of the context value
-  return (
-    <UserContext.Provider value={{ user, openUserSection, closeUserSection, isUserSectionOpen }}>{children}</UserContext.Provider>
-  );
+  return <UserContext.Provider value={{ user, openUserModal, closeUserModal, isUserModalOpen }}>{children}</UserContext.Provider>;
 };

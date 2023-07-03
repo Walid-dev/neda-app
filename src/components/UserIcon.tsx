@@ -5,10 +5,10 @@ import { FaUserAstronaut } from "react-icons/fa";
 import { UserContextProps } from "@/types/types";
 
 const UserIcon: React.FC = () => {
-  const { openUserSection }: any = useContext(UserContext);
+  const { openUserModal }: any = useContext(UserContext);
 
   return (
-    <button className="user_icon" onClick={openUserSection}>
+    <button className="user_icon" onClick={openUserModal}>
       <FaUserAstronaut />
     </button>
   );
