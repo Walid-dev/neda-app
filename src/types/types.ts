@@ -1,7 +1,7 @@
 import { FirebaseApp } from "firebase/app";
 import { Analytics } from "firebase/analytics";
 
-export interface RegistrationFormProps {
+export interface LoginRegistrationFormProps {
   firebase: {
     app: FirebaseApp;
     analytics?: Analytics;

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "@/context/UserContext";
-import RegistrationForm from "./RegistrationForm";
+import LoginRegistrationForm from "./LoginRegistrationForm";
 import { app, analytics } from "../../firebase";
 
 import "../styles/cart_modal.css";
@@ -18,11 +18,11 @@ const UserModal: React.FC = () => {
 
       {user ? (
         <div>
-          {/* Pass the 'app' and 'analytics' props to the RegistrationForm component */}
+          {/* Pass the 'app' and 'analytics' props to the LoginRegistrationForm component */}
           <p className="">{user.email}</p>
         </div>
       ) : (
-        <RegistrationForm firebase={{ app, analytics }} />
+        <LoginRegistrationForm firebase={{ app, analytics }} />
       )}
     </div>
   );

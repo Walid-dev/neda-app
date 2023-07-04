@@ -19,7 +19,7 @@
 │   │   ├── CartModal.tsx
 │   │   ├── Header.tsx
 │   │   ├── ProductList.tsx
-│   │   ├── RegistrationForm.tsx
+│   │   ├── LoginRegistrationForm.tsx
 │   │   ├── UserIcon.tsx
 │   │   └── UserModal.tsx
 │   ├── context
