@@ -22,7 +22,7 @@ const UserPage: React.FC = () => {
 
   return (
     <div>
-      <h3>{user.name}</h3>
+      <h3>{user.id}</h3>
       <p>{user.email}</p>
       <button onClick={() => router.back()}>Go back</button>
     </div>

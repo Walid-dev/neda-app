@@ -1,10 +1,11 @@
 .
 ├── README.md
 ├── db.json
+├── firebase.ts
 ├── folder_structure.txt
 ├── next-env.d.ts
 ├── next.config.js
-├-- node...
+├── node
 ├── package-lock.json
 ├── package.json
 ├── postcss.config.js
@@ -17,18 +18,24 @@
 │   │   ├── CartIcon.tsx
 │   │   ├── CartModal.tsx
 │   │   ├── Header.tsx
-│   │   └── ProductList.tsx
+│   │   ├── ProductList.tsx
+│   │   ├── RegistrationForm.tsx
+│   │   ├── UserIcon.tsx
+│   │   └── UserModal.tsx
 │   ├── context
-│   │   └── CartContext.tsx
+│   │   ├── CartContext.tsx
+│   │   └── UserContext.tsx
 │   ├── data
-│   │   └── products.ts
+│   │   ├── products.ts
+│   │   └── users.ts
 │   ├── pages
 │   │   ├── HomePage.test.tsx
 │   │   ├── _app.tsx
 │   │   ├── example.tsx
 │   │   ├── index.tsx
 │   │   ├── pages.tsx
-│   │   └── products
+│   │   ├── products
+│   │   └── users
 │   ├── public
 │   │   ├── next.svg
 │   │   └── vercel.svg
@@ -41,6 +48,8 @@
 │   └── types
 │       └── types.ts
 ├── tailwind.config.js
-└── tsconfig.json
+├── tsconfig.json
+├── yarn-error.log
+└── yarn.lock
 
-1336 directories, 3748 files
+1473 directories, 3912 files

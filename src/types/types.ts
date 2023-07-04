@@ -16,6 +16,11 @@ export interface Product {
   image: string;
 }
 
+export type User = {
+  id: string;
+  email: string;
+};
+
 export interface CartItem extends Product {
   quantity: number;
 }
@@ -34,6 +39,7 @@ export interface UserContextProps {
   user: User | null;
   openUserModal: () => void;
   closeUserModal: () => void;
+  updateUser: (newUser: User) => void;
   isUserModalOpen: boolean;
 }
 
@@ -48,13 +54,4 @@ export enum CartActionType {
   UPDATE_ITEM = "UPDATE_ITEM",
 }
 
-export type User = {
-  id: number;
-  email: string;
-  name: string;
-  phone: string;
-  country: string;
-  age: number;
-  status: string;
-  creation_date: string;
-};
+

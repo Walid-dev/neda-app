@@ -19,7 +19,6 @@ const UserModal: React.FC = () => {
       {user ? (
         <div>
           {/* Pass the 'app' and 'analytics' props to the RegistrationForm component */}
-          <p className="">{user.name}</p>
           <p className="">{user.email}</p>
         </div>
       ) : (
