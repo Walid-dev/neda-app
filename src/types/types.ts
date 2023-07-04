@@ -40,6 +40,7 @@ export interface UserContextProps {
   openUserModal: () => void;
   closeUserModal: () => void;
   updateUser: (newUser: User) => void;
+  logoutUser: () => void;
   isUserModalOpen: boolean;
 }
 

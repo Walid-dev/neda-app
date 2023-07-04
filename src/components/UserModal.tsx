@@ -6,7 +6,7 @@ import { app, analytics } from "../../firebase";
 import "../styles/cart_modal.css";
 
 const UserModal: React.FC = () => {
-  const { user, isUserModalOpen, closeUserModal } = useContext(UserContext)!;
+  const { user, isUserModalOpen, closeUserModal, logoutUser } = useContext(UserContext)!;
 
   if (!isUserModalOpen) {
     return null;
@@ -20,6 +20,11 @@ const UserModal: React.FC = () => {
         <div>
           {/* Pass the 'app' and 'analytics' props to the LoginRegistrationForm component */}
           <p className="">{user.email}</p>
+          {user && (
+            <button type="button" onClick={logoutUser}>
+              Logout
+            </button>
+          )}
         </div>
       ) : (
         <LoginRegistrationForm firebase={{ app, analytics }} />
