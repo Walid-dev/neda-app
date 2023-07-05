@@ -18,7 +18,7 @@ export interface Product {
 
 export type User = {
   id: string;
-  email: string;
+  email: string | null;
 };
 
 export interface CartItem extends Product {

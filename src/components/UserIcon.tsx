@@ -1,15 +1,13 @@
 import React, { useContext } from "react";
 import { UserContext } from "@/context/UserContext";
-import { FaUserAstronaut } from "react-icons/fa";
-
-import { UserContextProps } from "@/types/types";
+import { FaUserAstronaut, FaUber } from "react-icons/fa";
 
 const UserIcon: React.FC = () => {
-  const { openUserModal }: any = useContext(UserContext);
+  const { openUserModal, user }: any = useContext(UserContext);
 
   return (
     <button className="user_icon" onClick={openUserModal}>
-      <FaUserAstronaut />
+      {user ? <FaUserAstronaut /> : <FaUber />}
     </button>
   );
 };

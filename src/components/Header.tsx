@@ -5,7 +5,7 @@ import UserIcon from "./UserIcon";
 const Header: React.FC = () => {
   return (
     <header>
-      <h1>My E-commerce Site</h1>
+      <h1>Next JS App</h1>
       <nav>
         {/* Your navigation items */}
         <CartIcon />

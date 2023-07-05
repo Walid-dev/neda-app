@@ -6,31 +6,29 @@ const products: Product[] = [
     name: "Cool Shirt",
     description: "A really cool shirt.",
     price: 19.99,
-    image: "https://loremflickr.com/200/200",
+    image: "https://picsum.photos/200/200?random=1",
   },
   {
     id: 2,
     name: "Awesome Pants",
     description: "Some truly awesome pants.",
     price: 39.99,
-    image: "https://loremflickr.com/200/200",
+    image: "https://picsum.photos/200/200?random=2",
   },
   {
     id: 3,
     name: "Fluffy Gloves",
     description: "Warm inside.",
     price: 9.99,
-    image: "https://loremflickr.com/200/200",
+    image: "https://picsum.photos/200/200?random=3",
   },
   {
     id: 4,
     name: "White shirt",
     description: "Fancy, isn't it?",
     price: 49.99,
-    image: "https://loremflickr.com/200/200",
+    image: "https://picsum.photos/200/200?random=4",
   },
-
-  // Feel free to add more products
 ];
 
 export async function fetchProducts(): Promise<Product[]> {

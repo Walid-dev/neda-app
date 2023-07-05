@@ -15,16 +15,13 @@ const UserModal: React.FC = () => {
   return (
     <div className="user_modal">
       <button onClick={closeUserModal}>Close</button>
-
       {user ? (
         <div>
           {/* Pass the 'app' and 'analytics' props to the LoginRegistrationForm component */}
           <p className="">{user.email}</p>
-          {user && (
-            <button type="button" onClick={logoutUser}>
-              Logout
-            </button>
-          )}
+          <button type="button" onClick={logoutUser}>
+            Logout
+          </button>
         </div>
       ) : (
         <LoginRegistrationForm firebase={{ app, analytics }} />

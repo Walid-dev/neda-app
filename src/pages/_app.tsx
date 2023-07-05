@@ -9,14 +9,14 @@ import UserModal from "@/components/UserModal";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <CartProvider>
-      <UserProvider>
+    <UserProvider>
+      <CartProvider>
         <Header />
         <Component {...pageProps} />
         <CartModal />
         <UserModal />
-      </UserProvider>
-    </CartProvider>
+      </CartProvider>
+    </UserProvider>
   );
 };
 
