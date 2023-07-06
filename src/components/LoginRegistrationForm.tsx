@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "fire
 import { auth } from "../../firebase";
 import { UserContext } from "@/context/UserContext";
 import { LoginRegistrationFormProps } from "../types/types";
+import PasswordReset from "../components/PasswordReset";
 
 // LoginRegistrationForm component receives the 'firebase' prop from its parent component
 const LoginRegistrationForm: React.FC<LoginRegistrationFormProps> = ({ firebase }) => {
@@ -62,14 +63,17 @@ const LoginRegistrationForm: React.FC<LoginRegistrationFormProps> = ({ firebase 
   };
 
   return (
-    <form onSubmit={handleAuth}>
-      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
-      <button type="submit">{isLoginMode ? "Log In" : "Sign Up"}</button>
-      <button type="button" onClick={toggleAuthMode}>
-        Switch to {isLoginMode ? "Sign Up" : "Log In"}
-      </button>
-    </form>
+    <div>
+      <form onSubmit={handleAuth}>
+        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
+        <button type="submit">{isLoginMode ? "Log In" : "Sign Up"}</button>
+        <button type="button" onClick={toggleAuthMode}>
+          Switch to {isLoginMode ? "Sign Up" : "Log In"}
+        </button>
+      </form>
+      {!isLoginMode && <PasswordReset />} {/* <-- Include the PasswordResetForm component, but only when isLoginMode is false */}
+    </div>
   );
 };
 
