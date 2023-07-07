@@ -4,12 +4,14 @@ import { auth } from "../../firebase";
 import { UserContext } from "@/context/UserContext";
 import { LoginRegistrationFormProps } from "../types/types";
 import PasswordReset from "../components/PasswordReset";
+import { SimpleModal } from "./SimpleModal";
 
 // LoginRegistrationForm component receives the 'firebase' prop from its parent component
 const LoginRegistrationForm: React.FC<LoginRegistrationFormProps> = ({ firebase }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoginMode, setIsLoginMode] = useState(false); // Add this
+  const [isOpen, setIsOpen] = useState(false);
 
   // Get the updateUser function from your UserContext
   const { updateUser } = useContext(UserContext)!;
@@ -73,6 +75,14 @@ const LoginRegistrationForm: React.FC<LoginRegistrationFormProps> = ({ firebase 
         </button>
       </form>
       {!isLoginMode && <PasswordReset />} {/* <-- Include the PasswordResetForm component, but only when isLoginMode is false */}
+      <button type="button" onClick={() => setIsOpen(true)}>
+        Open modal
+      </button>
+      <SimpleModal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <h2>Modal Content</h2>
+        <p>This is a simple modal.</p>
+        <PasswordReset />
+      </SimpleModal>
     </div>
   );
 };

@@ -5,7 +5,6 @@
 ├── folder_structure.txt
 ├── next-env.d.ts
 ├── next.config.js
-├── node
 ├── package-lock.json
 ├── package.json
 ├── postcss.config.js
@@ -18,8 +17,9 @@
 │   │   ├── CartIcon.tsx
 │   │   ├── CartModal.tsx
 │   │   ├── Header.tsx
-│   │   ├── ProductList.tsx
 │   │   ├── LoginRegistrationForm.tsx
+│   │   ├── PasswordReset.tsx
+│   │   ├── ProductList.tsx
 │   │   ├── UserIcon.tsx
 │   │   └── UserModal.tsx
 │   ├── context
@@ -52,4 +52,4 @@
 ├── yarn-error.log
 └── yarn.lock
 
-1473 directories, 3912 files
+12 directories, 41 files

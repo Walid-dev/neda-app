@@ -44,6 +44,12 @@ export interface UserContextProps {
   isUserModalOpen: boolean;
 }
 
+export interface SimpleModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+}
+
 export type Action =
   | { type: "ADD_ITEM"; product: CartItem }
   | { type: "REMOVE_ITEM"; product: CartItem }
