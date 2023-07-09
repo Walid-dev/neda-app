@@ -14,34 +14,41 @@
     background-color: white;
     color: #000000;
     padding: 1em;
+}
+
+.modal_small {
     width: 80%;
     max-width: 400px;
 }
 
-#modal_reset_password_container {
-    border: 3px solid red
+.modal_medium {
+    width: 80%;
+    max-width: 720px;
 }
 
-#modal_reset_password_content {
-    border: 6px solid yellow
+.modal_large {
+    width: 90%;
+    max-width: 820px;
 }
 
-
+.modal_full {
+    width: 100%;
+}
 /* simple_modal.css */
 
-#modal_info_container {
-    background: #0ae11c;
+#modal_info_content {
+    border: 3px solid #0ae11c;
 }
 
-#modal_warning_container {
+#modal_warning_content {
     /* Styles for warning modal */
-    background: #eaa208;
+    border: 3px solid #eaa208;
 
 }
 
-#modal_error_container {
+#modal_error_content {
     /* Styles for warning modal */
-    background: #f61a02;
+    border: 3px solid #f61a02;
 
 }
 

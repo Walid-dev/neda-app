@@ -50,7 +50,13 @@ export enum ModalType {
   Error = "error",
   Success = "success",
   ResetPassword = "reset_password",
-  // add more types as needed
+}
+
+export enum ModalSize {
+  Small = "modal_small",
+  Medium = "modal_medium",
+  Large = "modal_large",
+  Full = "modal_full",
 }
 
 export interface SimpleModalProps {
@@ -60,6 +66,7 @@ export interface SimpleModalProps {
   onConfirm?: () => void;
   children: React.ReactNode;
   type: ModalType;
+  size: ModalSize;
 }
 
 export interface ModalContextProps {

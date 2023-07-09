@@ -3,7 +3,7 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "fire
 import { auth } from "../../firebase";
 import { UserContext } from "@/context/UserContext";
 import { ModalContext } from "../context/ModalContext";
-import { LoginRegistrationFormProps, ModalType } from "../types/types";
+import { LoginRegistrationFormProps, ModalSize, ModalType } from "../types/types";
 import PasswordReset from "../components/PasswordReset";
 import { SimpleModal } from "./SimpleModal";
 
@@ -88,6 +88,7 @@ const LoginRegistrationForm: React.FC<LoginRegistrationFormProps> = ({ firebase 
       {/* <-- Include the PasswordResetForm component, but only when isLoginMode is false */}
       <SimpleModal
         type={ModalType.Info}
+        size={ModalSize.Small}
         modalTitle={modalTitle}
         isSimpleModalOpen={isSimpleModalOpen}
         onClose={() => closeSimpleModal()}>
