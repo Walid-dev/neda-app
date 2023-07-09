@@ -1,32 +1,27 @@
 // src/components/SimpleModal.tsx
 import React from "react";
 import { SimpleModalProps } from "../types/types";
+import "../styles/simple_modal.css";
 
-export const SimpleModal: React.FC<SimpleModalProps> = ({ isOpen, onClose, children }) => {
-  if (!isOpen) return null;
+export const SimpleModal: React.FC<SimpleModalProps> = ({
+  modalTitle,
+  type,
+  isSimpleModalOpen,
+  onClose,
+  children,
+  onConfirm,
+}) => {
+  if (!isSimpleModalOpen) return null;
+
+  const modalTypeClass = type ? `modal_${type}` : ""; // derive class from type
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: "rgba(0,0,0,0.3)",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}>
-      <div
-        style={{
-          backgroundColor: "white",
-          padding: "1em",
-          width: "80%",
-          maxWidth: "400px",
-        }}>
+    <div id={`${modalTypeClass}_container`} className="simple_modal_container">
+      <div id={`${modalTypeClass}_content`} className="simple_modal_content">
+        <h2>{modalTitle}</h2>
         {children}
         <button onClick={onClose}>Close</button>
+        {onConfirm && <button onClick={onConfirm}>Confirm</button>} {/* New Confirm button */}
       </div>
     </div>
   );

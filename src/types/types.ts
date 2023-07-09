@@ -44,11 +44,30 @@ export interface UserContextProps {
   isUserModalOpen: boolean;
 }
 
-export interface SimpleModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
+export enum ModalType {
+  Info = "info",
+  Warning = "warning",
+  Error = "error",
+  Success = "success",
+  ResetPassword = "reset_password",
+  // add more types as needed
 }
+
+export interface SimpleModalProps {
+  modalTitle?: string;
+  isSimpleModalOpen: boolean;
+  onClose: () => void;
+  onConfirm?: () => void;
+  children: React.ReactNode;
+  type: ModalType;
+}
+
+export interface ModalContextProps {
+  isSimpleModalOpen: boolean;
+  openSimpleModal: () => void;
+  closeSimpleModal: () => void;
+}
+
 
 export type Action =
   | { type: "ADD_ITEM"; product: CartItem }

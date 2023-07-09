@@ -6,17 +6,20 @@ import Header from "@/components/Header";
 import CartModal from "@/components/CartModal";
 import { UserProvider } from "@/context/UserContext";
 import UserModal from "@/components/UserModal";
+import { ModalProvider } from "@/context/ModalContext";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <UserProvider>
-      <CartProvider>
-        <Header />
-        <Component {...pageProps} />
-        <CartModal />
-        <UserModal />
-      </CartProvider>
-    </UserProvider>
+    <ModalProvider>
+      <UserProvider>
+        <CartProvider>
+          <Header />
+          <Component {...pageProps} />
+          <CartModal />
+          <UserModal />
+        </CartProvider>
+      </UserProvider>
+    </ModalProvider>
   );
 };
 

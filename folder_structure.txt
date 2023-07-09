@@ -20,10 +20,12 @@
 │   │   ├── LoginRegistrationForm.tsx
 │   │   ├── PasswordReset.tsx
 │   │   ├── ProductList.tsx
+│   │   ├── SimpleModal.tsx
 │   │   ├── UserIcon.tsx
 │   │   └── UserModal.tsx
 │   ├── context
 │   │   ├── CartContext.tsx
+│   │   ├── ModalContext.tsx
 │   │   └── UserContext.tsx
 │   ├── data
 │   │   ├── products.ts
@@ -44,7 +46,8 @@
 │   │   ├── cart_modal.css
 │   │   ├── globals.css
 │   │   ├── header.css
-│   │   └── product_list.css
+│   │   ├── product_list.css
+│   │   └── simple_modal.css
 │   └── types
 │       └── types.ts
 ├── tailwind.config.js
@@ -52,4 +55,4 @@
 ├── yarn-error.log
 └── yarn.lock
 
-12 directories, 41 files
+12 directories, 44 files

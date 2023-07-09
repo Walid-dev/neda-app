@@ -2,7 +2,8 @@ import React, { useContext, useState } from "react";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { UserContext } from "@/context/UserContext";
-import { LoginRegistrationFormProps } from "../types/types";
+import { ModalContext } from "../context/ModalContext";
+import { LoginRegistrationFormProps, ModalType } from "../types/types";
 import PasswordReset from "../components/PasswordReset";
 import { SimpleModal } from "./SimpleModal";
 
@@ -11,10 +12,13 @@ const LoginRegistrationForm: React.FC<LoginRegistrationFormProps> = ({ firebase 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoginMode, setIsLoginMode] = useState(false); // Add this
-  const [isOpen, setIsOpen] = useState(false);
+  const [modalTitle, setModalTitle] = useState("Custom modal title");
 
   // Get the updateUser function from your UserContext
   const { updateUser } = useContext(UserContext)!;
+  const { isSimpleModalOpen, openSimpleModal, closeSimpleModal } = useContext(ModalContext);
+
+  console.log(isSimpleModalOpen, openSimpleModal, closeSimpleModal);
 
   // Extract the 'app' property from the 'firebase' object
 
@@ -74,13 +78,19 @@ const LoginRegistrationForm: React.FC<LoginRegistrationFormProps> = ({ firebase 
           Switch to {isLoginMode ? "Sign Up" : "Log In"}
         </button>
       </form>
-      {!isLoginMode && <PasswordReset />} {/* <-- Include the PasswordResetForm component, but only when isLoginMode is false */}
-      <button type="button" onClick={() => setIsOpen(true)}>
-        Open modal
-      </button>
-      <SimpleModal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <h2>Modal Content</h2>
-        <p>This is a simple modal.</p>
+      {isLoginMode && (
+        <div>
+          <button type="button" onClick={() => openSimpleModal()}>
+            Open modal
+          </button>
+        </div>
+      )}
+      {/* <-- Include the PasswordResetForm component, but only when isLoginMode is false */}
+      <SimpleModal
+        type={ModalType.Info}
+        modalTitle={modalTitle}
+        isSimpleModalOpen={isSimpleModalOpen}
+        onClose={() => closeSimpleModal()}>
         <PasswordReset />
       </SimpleModal>
     </div>

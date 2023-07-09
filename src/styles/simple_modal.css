@@ -1,0 +1,55 @@
+.simple_modal_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.simple_modal_content {
+    background-color: white;
+    color: #000000;
+    padding: 1em;
+    width: 80%;
+    max-width: 400px;
+}
+
+#modal_reset_password_container {
+    border: 3px solid red
+}
+
+#modal_reset_password_content {
+    border: 6px solid yellow
+}
+
+
+/* simple_modal.css */
+
+#modal_info_container {
+    background: #0ae11c;
+}
+
+#modal_warning_container {
+    /* Styles for warning modal */
+    background: #eaa208;
+
+}
+
+#modal_error_container {
+    /* Styles for warning modal */
+    background: #f61a02;
+
+}
+
+#password_reset_container {
+    /* Styles for warning modal */
+    background: #ffffff;
+
+}
+
+
+/* ... and so on for other modal types */
