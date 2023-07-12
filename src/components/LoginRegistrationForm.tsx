@@ -6,25 +6,27 @@ import { ModalContext } from "../context/ModalContext";
 import { LoginRegistrationFormProps, ModalSize, ModalType } from "../types/types";
 import PasswordReset from "../components/PasswordReset";
 import { SimpleModal } from "./SimpleModal";
+import { Spinner } from "../components/Spinner";
 
 // LoginRegistrationForm component receives the 'firebase' prop from its parent component
 const LoginRegistrationForm: React.FC<LoginRegistrationFormProps> = ({ firebase }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoginMode, setIsLoginMode] = useState(false); // Add this
-  const [modalTitle, setModalTitle] = useState("Custom modal title");
+  const [isLoginMode, setIsLoginMode] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [modalTitle, setModalTitle] = useState("Reset your Password");
+  const [isLoading, setIsLoading] = useState(false);
 
   // Get the updateUser function from your UserContext
   const { updateUser } = useContext(UserContext)!;
   const { isSimpleModalOpen, openSimpleModal, closeSimpleModal } = useContext(ModalContext);
 
-  console.log(isSimpleModalOpen, openSimpleModal, closeSimpleModal);
-
   // Extract the 'app' property from the 'firebase' object
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    setErrorMessage("");
+    setIsLoading(true); // Start loading here
     try {
       let userCredential;
       if (isLoginMode) {
@@ -35,8 +37,6 @@ const LoginRegistrationForm: React.FC<LoginRegistrationFormProps> = ({ firebase 
 
       const user = userCredential.user;
 
-      console.log(user);
-
       if (user.email !== null) {
         const newUser = {
           id: user.uid,
@@ -45,22 +45,34 @@ const LoginRegistrationForm: React.FC<LoginRegistrationFormProps> = ({ firebase 
 
         // Update the user in your UserContext
         updateUser(newUser);
+        setEmail("");
+        setPassword("");
+        setErrorMessage("Authentication successful!");
       } else {
-        console.error("Error: user.email is null");
+        setErrorMessage("Error: user.email is null");
       }
     } catch (error: any) {
-      // Handle Errors here.
-      if (error.code === "auth/email-already-in-use") {
-        console.log("This email is already in use. Please log in instead.");
-      } else if (error.code === "auth/invalid-email") {
-        console.log("The email address is badly formatted.");
-      } else if (error.code === "auth/weak-password") {
-        console.log("The password is too weak.");
-      } else if (error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
-        console.log("The email and password combination is incorrect.");
-      } else {
-        console.error(error.message);
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          setErrorMessage("This email is already in use. Please log in instead.");
+          break;
+        case "auth/invalid-email":
+          setErrorMessage("The email address is badly formatted.");
+          break;
+        case "auth/weak-password":
+          setErrorMessage("The password is too weak.");
+          break;
+        case "auth/user-not-found":
+        case "auth/wrong-password":
+          setErrorMessage("The email and password combination is incorrect.");
+          break;
+        default:
+          console.log(error.code);
+          setErrorMessage("An error occurred. Please try again.");
+          break;
       }
+    } finally {
+      setIsLoading(false); // End loading here, in the finally block
     }
   };
 
@@ -68,6 +80,12 @@ const LoginRegistrationForm: React.FC<LoginRegistrationFormProps> = ({ firebase 
     setIsLoginMode((prevMode) => !prevMode);
   };
 
+  // Render the spinner if isLoading is true
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  // Render the data when it's finished loading
   return (
     <div>
       <form onSubmit={handleAuth}>
@@ -81,7 +99,7 @@ const LoginRegistrationForm: React.FC<LoginRegistrationFormProps> = ({ firebase 
       {isLoginMode && (
         <div>
           <button type="button" onClick={() => openSimpleModal()}>
-            Open modal
+            Reset Password
           </button>
         </div>
       )}
@@ -91,11 +109,17 @@ const LoginRegistrationForm: React.FC<LoginRegistrationFormProps> = ({ firebase 
         size={ModalSize.Small}
         modalTitle={modalTitle}
         isSimpleModalOpen={isSimpleModalOpen}
-        onClose={() => closeSimpleModal()}>
+        onClose={() => closeSimpleModal()}
+        onConfirm={() => console.log("Confirmed")}>
         <PasswordReset />
       </SimpleModal>
+      {errorMessage && <h3>{errorMessage}</h3>}
     </div>
   );
 };
+  
+
+
+
 
 export default LoginRegistrationForm;

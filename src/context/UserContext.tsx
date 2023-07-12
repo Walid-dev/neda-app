@@ -2,6 +2,7 @@ import React, { createContext, useCallback, useEffect, useState } from "react";
 import { User, UserContextProps } from "@/types/types";
 import { signOut, onAuthStateChanged, User as FirebaseUser } from "@firebase/auth";
 import { auth, app } from "../../firebase";
+import { Spinner } from "@/components/Spinner";
 
 // Update the default context value to match UserContextProps structure
 export const UserContext = createContext<UserContextProps | null>({
@@ -16,6 +17,7 @@ export const UserContext = createContext<UserContextProps | null>({
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isUserModalOpen, setisUserModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser: FirebaseUser | null) => {
@@ -28,6 +30,9 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       } else {
         setUser(null);
       }
+
+      // Set loading state to false when we're done checking the user's authentication state
+      setIsLoading(false);
     });
 
     // Cleanup subscription on unmount
@@ -39,24 +44,30 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const logoutUser = async () => {
-    // <-- New logout function
+    setIsLoading(true); // <-- Set loading state to true when logout starts
+
     try {
       await signOut(auth);
       setUser(null); // Set the user state to null after successful signout
     } catch (error: any) {
       console.error("Failed to logout", error);
+    } finally {
+      setIsLoading(false); // <-- Set loading state to false when logout finishes
     }
   };
 
   const openUserModal = useCallback(() => {
     setisUserModalOpen(true);
-  }, [isUserModalOpen]);
+  }, []);
 
   const closeUserModal = useCallback(() => {
     setisUserModalOpen(false);
-  }, [isUserModalOpen]);
+  }, []);
 
-  // Provide the user state as a part of the context value
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <UserContext.Provider value={{ user, openUserModal, closeUserModal, isUserModalOpen, updateUser, logoutUser }}>
       {children}

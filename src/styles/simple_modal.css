@@ -10,8 +10,15 @@
     align-items: center;
 }
 
+#close_modal_button {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    cursor: pointer;
+}
 .simple_modal_content {
     background-color: white;
+    position: relative;
     color: #000000;
     padding: 1em;
 }

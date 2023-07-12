@@ -19,6 +19,9 @@ export const SimpleModal: React.FC<SimpleModalProps> = ({
   return (
     <div id={`${modalTypeClass}_container`} className="simple_modal_container">
       <div id={`${modalTypeClass}_content`} className={`simple_modal_content ${size}`}>
+        <span onClick={onClose} id="close_modal_button">
+          X
+        </span>
         <h2>{modalTitle}</h2>
         {children}
         <button onClick={onClose}>Close</button>
