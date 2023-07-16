@@ -22,7 +22,7 @@ export type User = {
 };
 
 export interface CartItem extends Product {
-  quantity: number;
+  quantity?: number;
 }
 
 export interface CartContextProps {

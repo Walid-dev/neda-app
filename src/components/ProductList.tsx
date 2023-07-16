@@ -5,6 +5,7 @@ import "../styles/product_list.css";
 
 import { CartContext } from "@/context/CartContext";
 import Link from "next/link";
+import { Spinner } from "./Spinner";
 
 const ProductList: React.FC = () => {
   const { addToCart } = useContext(CartContext)!;
@@ -24,13 +25,12 @@ const ProductList: React.FC = () => {
   // Remove the addToCart function, as we're now getting it from our context
 
   if (loading) {
-    return <p>Loading products...</p>;
+    return <Spinner />;
   }
 
   if (error) {
     return <p>Sorry, there was an error loading products. Please try again later.</p>;
   }
-
   return (
     <div className="product_list">
       {products.map((product) => (

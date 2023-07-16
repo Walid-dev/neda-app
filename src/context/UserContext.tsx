@@ -17,7 +17,7 @@ export const UserContext = createContext<UserContextProps | null>({
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isUserModalOpen, setisUserModalOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [loading, setloading] = useState<boolean>(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser: FirebaseUser | null) => {
@@ -32,7 +32,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
 
       // Set loading state to false when we're done checking the user's authentication state
-      setIsLoading(false);
+      setloading(false);
     });
 
     // Cleanup subscription on unmount
@@ -44,7 +44,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const logoutUser = async () => {
-    setIsLoading(true); // <-- Set loading state to true when logout starts
+    setloading(true); // <-- Set loading state to true when logout starts
 
     try {
       await signOut(auth);
@@ -52,7 +52,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } catch (error: any) {
       console.error("Failed to logout", error);
     } finally {
-      setIsLoading(false); // <-- Set loading state to false when logout finishes
+      setloading(false); // <-- Set loading state to false when logout finishes
     }
   };
 
@@ -64,7 +64,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setisUserModalOpen(false);
   }, []);
 
-  if (isLoading) {
+  if (loading) {
     return <Spinner />;
   }
 

@@ -10,12 +10,12 @@ import { Spinner } from "../components/Spinner";
 
 // LoginRegistrationForm component receives the 'firebase' prop from its parent component
 const LoginRegistrationForm: React.FC<LoginRegistrationFormProps> = ({ firebase }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLoginMode, setIsLoginMode] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [modalTitle, setModalTitle] = useState("Reset your Password");
-  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [isLoginMode, setIsLoginMode] = useState<boolean>(true);
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [modalTitle, setModalTitle] = useState<string>("Reset your Password");
+  const [loading, setloading] = useState<boolean>(false);
 
   // Get the updateUser function from your UserContext
   const { updateUser } = useContext(UserContext)!;
@@ -26,7 +26,7 @@ const LoginRegistrationForm: React.FC<LoginRegistrationFormProps> = ({ firebase 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage("");
-    setIsLoading(true); // Start loading here
+    setloading(true); // Start loading here
     try {
       let userCredential;
       if (isLoginMode) {
@@ -72,7 +72,7 @@ const LoginRegistrationForm: React.FC<LoginRegistrationFormProps> = ({ firebase 
           break;
       }
     } finally {
-      setIsLoading(false); // End loading here, in the finally block
+      setloading(false); // End loading here, in the finally block
     }
   };
 
@@ -80,8 +80,8 @@ const LoginRegistrationForm: React.FC<LoginRegistrationFormProps> = ({ firebase 
     setIsLoginMode((prevMode) => !prevMode);
   };
 
-  // Render the spinner if isLoading is true
-  if (isLoading) {
+  // Render the spinner if loading is true
+  if (loading) {
     return <Spinner />;
   }
 

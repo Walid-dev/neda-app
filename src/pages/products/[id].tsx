@@ -4,6 +4,7 @@ import { Product, CartItem } from "@/types/types";
 import { fetchProductById } from "@/data/products";
 import { CartContext } from "@/context/CartContext";
 import { useContext } from "react";
+import { Spinner } from "@/components/Spinner";
 
 const ProductPage: React.FC = () => {
   const router = useRouter();
@@ -20,7 +21,7 @@ const ProductPage: React.FC = () => {
   }, [id]);
 
   if (!product) {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
 
   return (
