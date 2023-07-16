@@ -75,3 +75,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 **I. Deploying Our Application**
    1. Explanation of the deployment process, options for deployment platforms.
    2. Hands-on: Deploying our application on Vercel.
+# neda-app
